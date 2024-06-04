@@ -23,6 +23,9 @@ def create_app(config=ApplicationConfig):
     app = Flask(__name__)
     app.config.from_object(config)
     db.init_app(app)
+    
+    from .models import User, Order
+
     migrate.init_app(app, db)
 
     return app
