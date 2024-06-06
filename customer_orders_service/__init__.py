@@ -43,6 +43,9 @@ def create_app(config=ApplicationConfig):
     migrate.init_app(app, db)
 
     from .auth.views import auth_blueprint
+    from .orders.views import orders_blueprint
+
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(orders_blueprint, url_prefix='/orders')
 
     return app
