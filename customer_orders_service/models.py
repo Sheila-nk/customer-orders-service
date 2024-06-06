@@ -30,14 +30,16 @@ class Order(db.Model):
     item_name = Column(String(150), nullable=False)
     num_of_items = Column(Integer, nullable=False)
     created_at = Column(DateTime, nullable=False)
+    phonenumber = Column(String(20), nullable=False)
     user_id = Column(String(32), ForeignKey('users.id'), nullable=False)
     customer = relationship('User', back_populates='orders')
 
-    def __init__(self, item_name, num_of_items):
+    def __init__(self, item_name, num_of_items, phonenumber):
         self.order_id = get_uuid()
         self.item_name = item_name
         self.num_of_items = num_of_items
+        self.phonenumber = phonenumber
         self.created_at = datetime.datetime.utcnow()
 
     def __repr__(self):
-        return f"Order('{self.item_name}', '{self.num_of_items}', '{self.created_at}')"
+        return f"Order('{self.item_name}', '{self.num_of_items}', '{self.created_at}', '{self.phonenumber}')"

@@ -1,3 +1,5 @@
+import africastalking
+
 from authlib.integrations.flask_client import OAuth
 from flask import Flask
 from flask_migrate import Migrate
@@ -37,6 +39,11 @@ def create_app(config=ApplicationConfig):
                 'scope': 'openid email profile'
             }
         )
+
+        username = app.config['AT_USERNAME']
+        api_key = app.config['AT_API_KEY']
+
+    africastalking.initialize(username, api_key)
 
     from .models import User, Order
 

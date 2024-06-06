@@ -1,16 +1,20 @@
+import africastalking
+
 from flask import Blueprint, request, jsonify, session
 from flask.views import MethodView
 
 from customer_orders_service import db
 from customer_orders_service.models import Order
 from .validation import CreateAddOrderSchema, CreateUpdateOrderSchema
+from .sms_integration import send_sms
 
 
 orders_blueprint = Blueprint('orders', __name__)
 
+
+
 class AddOrderAPI(MethodView):
     def post(self):
-        print('B: Session data: %s', session)
         post_data = request.get_json()
         add_order_schema = CreateAddOrderSchema()
         errors = add_order_schema.validate(post_data)
@@ -22,10 +26,16 @@ class AddOrderAPI(MethodView):
             order.user_id = session['user']
             db.session.add(order)
             db.session.commit()
-            return jsonify({"message": "Order added successfully!"}), 201
+
+            sms_sent = send_sms("Order successfully made!", post_data['phonenumber'])
+
+            if sms_sent:
+                return jsonify({"message": "Order added successfully!"}), 201
+            return jsonify({"message": "Order added successfully but we were unable to send SMS"}), 201
         
         except Exception as e:
-            return jsonify({'message': f'Something went wrong: {e}'}), 500
+            return jsonify({'message': f'Ooops! Something went wrong: {e}'}), 500
+        
     
 add_order_view = AddOrderAPI.as_view('add_order_api')
 orders_blueprint.add_url_rule(
@@ -38,6 +48,8 @@ orders_blueprint.add_url_rule(
 class UpdateOrderAPI(MethodView):
     def put(self, order_id):
         put_data = request.get_json()
+        if not put_data:
+            return jsonify({'message': 'No data provided to update order'}), 400
         update_order_schema = CreateUpdateOrderSchema()
         errors = update_order_schema.validate(put_data)
         if errors:
