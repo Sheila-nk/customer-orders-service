@@ -18,11 +18,10 @@ jobs:
     runs-on: ubuntu-22.04
 
     strategy:
-      # Keep running even if one variation of the job fail
+      # Keep running even if one variation of the job fails
       fail-fast: false
       matrix:
-        include:
-          python: ["3.10", "3.11", "3.12"]
+          python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       # actions/setup-python@v5 has built-in functionality for caching and restoring dependencies. 
