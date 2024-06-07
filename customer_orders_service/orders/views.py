@@ -1,5 +1,3 @@
-import africastalking
-
 from flask import Blueprint, request, jsonify, session
 from flask.views import MethodView
 
@@ -10,7 +8,6 @@ from .sms_integration import send_sms
 
 
 orders_blueprint = Blueprint('orders', __name__)
-
 
 
 class AddOrderAPI(MethodView):

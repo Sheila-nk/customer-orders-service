@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, request, redirect, jsonify, session, url_for
+from flask import Blueprint, jsonify, session, url_for
 from flask.views import MethodView
 from customer_orders_service import db, oauth
 from customer_orders_service.models import User
@@ -35,19 +35,11 @@ class AuthorizeAPI(MethodView):
                     db.session.add(user)
                     db.session.commit()
                 session['user'] = user.id
-                response_object = {
-                    'message': f'Login successful. Welcome {user.username}'
-                }
-                response = jsonify(response_object)
-                response.status_code = 200
+                return jsonify({'message': f'Login successful. Welcome {user.username}'}), 200
+
             except Exception as e:
-                response_object = {
-                    'message': f'Ooops! Something went wrong!: {e}'
-                }
-                response = jsonify(response_object)
-                response.status_code = 500
-        return response
-    
+                return jsonify({'message': f'Ooops! Something went wrong!: {e}'}), 500
+
     
 authorize_view = AuthorizeAPI.as_view('authorize_api')
 auth_blueprint.add_url_rule(
@@ -59,12 +51,8 @@ auth_blueprint.add_url_rule(
 class LogoutAPI(MethodView):
     def get(self):
         session.pop('user', None)
-        response_object = {
-            'message': 'Logout successful. Goodbye'
-        }
-        response = jsonify(response_object)
-        response.status_code = 200
-        return response
+        return jsonify({'message': 'Logout successful. Goodbye!'}), 200
+
     
 logout_view = LogoutAPI.as_view('logout_api')
 auth_blueprint.add_url_rule(
