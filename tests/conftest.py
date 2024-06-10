@@ -6,7 +6,7 @@ from customer_orders_service.config import TestingConfig
 from customer_orders_service.models import User, Order
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='module', autouse=True)
 def test_client():
     """
     This fixture creates a Flask test client using the TestingConfig configuration.
