@@ -32,3 +32,18 @@ def new_user():
 def new_order():
     # Fixture for creating a new order
     return Order(item_name='shoes', num_of_items=3, phonenumber='+254789123456')
+
+
+@pytest.fixture(scope='module')
+def db_user_and_order():
+    # Fixture to add a user and an order to the database for testing
+    user = User(id='1234abc', username='test_user')
+    db.session.add(user)
+    db.session.commit()
+
+    order = Order(item_name='Books', num_of_items=3, phonenumber='+254796749735')
+    order.user_id = user.id
+    db.session.add(order)
+    db.session.commit()
+
+    return user, order
