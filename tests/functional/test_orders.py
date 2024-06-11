@@ -57,9 +57,12 @@ class TestOrderBlueprint:
         THEN check that the response indicates successful deletion of an order
         """
         user, order = db_user_and_order
-        
+
         response = test_client.delete(f'/orders/delete_order/{order.order_id}')
         assert response.status_code == 200
 
         response_data = json.loads(response.data.decode('utf-8'))
         assert response_data['message'] == 'Order deleted successfully!'
+
+        order_exists = Order.query.filter_by(order_id=order.order_id).first()
+        assert order_exists is None

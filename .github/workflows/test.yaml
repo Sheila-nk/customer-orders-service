@@ -54,5 +54,8 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Run the tests
+        env:
+          AT_USERNAME: "sandbox"
+          AT_API_KEY: ${{ secrets.AT_API_KEY }}
         run: |
           python -m pytest -v 
