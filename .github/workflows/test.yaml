@@ -48,14 +48,19 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip' # caching pip dependencies
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Run the tests
+      - name: Run the tests and collect coverage
         env:
           AT_USERNAME: "sandbox"
           AT_API_KEY: ${{ secrets.AT_API_KEY }}
         run: |
-          python -m pytest -v 
+          python -m pytest --cov -v
