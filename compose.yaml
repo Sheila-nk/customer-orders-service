@@ -8,8 +8,15 @@ services:
       - 8000:8000
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql://${PG_USER}:${PG_PASSWORD}@database:5432/${PG_DB}
+      - AT_USERNAME=sandbox
+      - AT_API_KEY=${AT_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
+      - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
     depends_on:
       - database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   database:
     image: postgres:latest
@@ -19,3 +26,6 @@ services:
       - POSTGRES_USER=${PG_USER}
       - POSTGRES_PASSWORD=${PG_PASSWORD}
       - POSTGRES_DB=${PG_DB}
+
+volumes:
+  postgres_data:
