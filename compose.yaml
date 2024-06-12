@@ -10,8 +10,6 @@ services:
       - SQLALCHEMY_DATABASE_URI=postgresql://${PG_USER}:${PG_PASSWORD}@database:5432/${PG_DB}
     depends_on:
       - database
-    env_file:
-      - .env
 
   database:
     image: postgres:latest
