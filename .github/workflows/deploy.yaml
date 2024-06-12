@@ -38,3 +38,4 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           heroku container:push api --app customer-orders-service
+          heroku container:release api --app customer-orders-service
