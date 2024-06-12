@@ -33,13 +33,8 @@ jobs:
         run: |
           docker-compose -f "compose.yaml" build
 
-      - name: Tag and push Docker image
-        run: |
-          docker tag customer-orders-service_api registry.heroku.com/customer-orders-service/web
-          docker push registry.heroku.com/customer-orders-service/web
-
-      - name: Deploy to Heroku
+      - name: Push container to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          heroku container:release web --app customer-orders-service
+          heroku container:push api --app customer-orders-service
