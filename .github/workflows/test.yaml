@@ -39,7 +39,7 @@ jobs:
         env:
           AT_USERNAME: "sandbox"
           AT_API_KEY: ${{ secrets.AT_API_KEY }}
-        run: docker-compose -f "compose.ci.yaml" up --build
+        run: docker-compose -f "compose.ci.yaml" up --build -d
 
       - name: Check running containers
         run: docker ps -a
