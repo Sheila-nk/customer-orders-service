@@ -36,15 +36,15 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
+        env:
+          AT_USERNAME: "sandbox"
+          AT_API_KEY: ${{ secrets.AT_API_KEY }}
         run: docker-compose -f "compose.ci.yaml" up --build
 
       - name: Check running containers
         run: docker ps -a
 
       - name: Run tests with coverage inside the container
-        env:
-          AT_USERNAME: "sandbox"
-          AT_API_KEY: ${{ secrets.AT_API_KEY }}
         run: docker-compose exec api pytest --cov --verbose
 
       - name: Upload coverage reports to Codecov
