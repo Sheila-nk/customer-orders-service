@@ -45,7 +45,7 @@ jobs:
         run: docker ps -a
 
       - name: Run tests with coverage inside the container
-        run: docker-compose exec api pytest --cov --verbose
+        run: docker-compose exec -T api pytest --cov --verbose
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
