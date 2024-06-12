@@ -35,10 +35,10 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag api registry.heroku.com/customer-orders-service-api/web
+          docker tag customer-orders-service_api registry.heroku.com/customer-orders-service/web
 
       - name: Deploy to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          heroku container:release web --app customer-orders-service-api
+          heroku container:release web --app customer-orders-service
