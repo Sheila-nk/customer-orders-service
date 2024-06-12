@@ -11,7 +11,7 @@ class TestAppConfig:
         app = test_client.application
         assert app.config['TESTING'] is True
         assert app.config['SECRET_KEY'] == 'testing'
-        assert app.config['SQLALCHEMY_DATABASE_URI'] == 'postgresql://postgres:admin@localhost:5432/test_db'
+        assert app.config['SQLALCHEMY_DATABASE_URI'] == 'postgresql://postgres:admin@database:5432/test_db'
 
     
 if __name__ == "__main__":

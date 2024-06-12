@@ -9,3 +9,4 @@ marshmallow==3.21.3
 africastalking==1.2.7 
 pytest==8.2.2
 pytest-cov==5.0.0
+gunicorn==22.0.0

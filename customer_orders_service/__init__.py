@@ -55,4 +55,11 @@ def create_app(config=ApplicationConfig):
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
     app.register_blueprint(orders_blueprint, url_prefix='/orders')
 
+    @app.after_request
+    def set_headers(response):
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['Content-Security-Policy'] = "frame-ancestors 'self'"
+        response.headers['Strict-Transport-Security'] = 'max-age=31536000;'
+        return response
+
     return app
