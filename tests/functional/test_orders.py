@@ -28,7 +28,7 @@ class TestOrderBlueprint:
         assert response.status_code == 201
 
         response_data = json.loads(response.data.decode('utf-8'))
-        assert response_data['message'] == 'Order added successfully but we were unable to send SMS!'
+        assert response_data['message'] == 'Order added successfully!'
 
 
     def test_update_order(self, test_client, db_user_and_order):
