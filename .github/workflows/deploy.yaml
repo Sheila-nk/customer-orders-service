@@ -2,40 +2,18 @@ name: Deploy to Heroku
 
 on:
   push:
-    branches: [ main ]
-  
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Log in to the Heroku Container Registry
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
-
-      - name: Build Docker image
-        env:
-          AT_USERNAME: "sandbox"
-          AT_API_KEY: ${{ secrets.AT_API_KEY }}
-          PG_USER: ${{ secrets.PG_USER }}
-          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-          PG_DB: ${{ secrets.PG_DB }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
-        run: |
-          docker-compose -f "compose.yaml" build
-
-      - name: Push container to Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          heroku container:push api --app customer-orders-service
-          heroku container:release api --app customer-orders-service
+      - uses: actions/checkout@v2
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.13.15
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "customer-orders-service"
+          heroku_email: "kahwaisheila@gmail.com"
+          usedocker: true
