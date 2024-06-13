@@ -7,9 +7,10 @@ services:
     ports: 
       - 8000:8000
     environment:
-      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:admin@database:5432/test_db
+      - DATABASE_URL=postgres://postgres:admin@database:5432/test_db
       - AT_USERNAME=sandbox
-      - AT_API_KEY=${AT_API_KEY} 
+      - AT_API_KEY=${AT_API_KEY}
+      - PORT=8000
     depends_on:
         - database
 
