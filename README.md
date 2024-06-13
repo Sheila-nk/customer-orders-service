@@ -10,7 +10,7 @@ The `Customer-Orders Service` is a Flask-based web application that handles user
 The application is containerized using `Docker` and deployed on `Heroku`. It interacts with a `PostgreSQL` database for storing user and order information, authenticates users via [Google OAuth](https://developers.google.com/identity/protocols/oauth2), and uses the [Africa's Talking](https://africastalking.com/) API for sending SMS notifications.
 
 ## Table of Contents
-1. [Architecture](#architecture)
+1. [Process Flow](#process-flow)
 1. [Setup](#setup)
 2. [Running the Application](#running-the-application)
 3. [API Endpoints](#api-endpoints)
@@ -18,7 +18,7 @@ The application is containerized using `Docker` and deployed on `Heroku`. It int
     - [Order Management Endpoints](#order-management-endpoints)
 
 
-### Architecture
+### Process Flow
 ![Service Architecure](/images/architecture.png)
 
 ### Setup
@@ -98,4 +98,6 @@ After setting up your environment and starting the Docker container, the applica
 - `DELETE /delete_order/<order_id>`: Delete an existing order.
 
     **Response**: JSON message indicating order deletion success or error.
+    
 
+Enjoy :rocket:
