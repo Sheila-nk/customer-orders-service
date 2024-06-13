@@ -16,8 +16,6 @@ RUN chown -R $USERNAME:$USERNAME /customer-orders-service
 
 USER $USERNAME
 
-EXPOSE 8000
-
 RUN ["chmod", "+x", "./commands.sh"]
 
-ENTRYPOINT ["./commands.sh"]
+CMD ["./commands.sh"]
