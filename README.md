@@ -1,5 +1,7 @@
 [![Tests](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/test.yaml/badge.svg)](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/test.yaml)
 
+[![Deploy to Heroku](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/deploy.yaml)
+
 
 # Customer-Orders Service
 
