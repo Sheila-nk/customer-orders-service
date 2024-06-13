@@ -27,6 +27,9 @@ class TestOrderBlueprint:
         response = test_client.post('/orders/add_order', json=order_data)
         assert response.status_code == 201
 
+        response_data = json.loads(response.data.decode('utf-8'))
+        assert response_data['message'] == 'Order added successfully!'
+
 
     def test_update_order(self, test_client, db_user_and_order):
         """

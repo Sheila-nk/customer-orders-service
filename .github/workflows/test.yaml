@@ -47,14 +47,7 @@ jobs:
         run: docker ps -a
 
       - name: Run tests with coverage inside the container
-        run: |
-          # Request Codecov to detect CI environment and pass through to Docker
-          ci_env=$(bash <(curl -s https://codecov.io/env))
-          
-          # Run Docker container with the necessary environment variables
-          docker-compose run $ci_env -e CI=true api /bin/bash -c "\
-            pytest --cov=customer_orders_service --verbose && \
-            ./codecov"
+        run: docker-compose exec -T api pytest --cov=customer_orders_service  --verbose
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
