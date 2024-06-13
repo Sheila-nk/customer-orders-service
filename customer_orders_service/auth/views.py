@@ -9,7 +9,7 @@ auth_blueprint = Blueprint('auth', __name__)
 
 class LoginAPI(MethodView):
     def get(self):
-        redirect_uri = url_for('auth.authorize_api', _external=True)
+        redirect_uri = url_for('auth.authorize_api', _external=True, _scheme='https')
         return oauth.google.authorize_redirect(redirect_uri)
     
 login_view = LoginAPI.as_view('login_api')
