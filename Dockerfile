@@ -16,4 +16,6 @@ RUN chown -R $USERNAME:$USERNAME /customer-orders-service
 
 USER $USERNAME
 
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:$PORT", "customer_orders_service:create_app()"]
+RUN ["chmod", "+x", "/commands.sh"]
+
+CMD ["/commands.sh"]
