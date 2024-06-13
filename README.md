@@ -1,3 +1,6 @@
+[![Tests](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/test.yaml/badge.svg)](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/test.yaml)
+
+
 # Customer-Orders Service
 
 The `Customer-Orders Service` is a Flask-based web application that handles user authentication and order management. 
@@ -14,38 +17,38 @@ The application is containerized using `Docker` and deployed on `Heroku`. It int
 
 
 ### Architecture
-![Service Architecure]('https://github.com/Sheila-nk/customer-orders-service/blob/main/images/architecture.png')
+![Service Architecure](/images/architecture.png)
 
 ### Setup
-To run the application locally using Docker, ensure you have the following installed:
-- Python
-- Docker
+1. To run the application locally using Docker, ensure you have the following installed:
+    - Python
+    - Docker
 
-Clone the repository:
-```sh
-git clone https://github.com/Sheila-nk/customer-orders-service.git
-cd customer-orders-service
-```
+2. Clone the repository:
+    ```sh
+    git clone https://github.com/Sheila-nk/customer-orders-service.git
+    cd customer-orders-service
+    ```
 
-Create a .env file:
-```sh
-touch .env
-```
-Add your environment variables in the `.env` file. It should include the following:
+3. Create a .env file:
+    ```sh
+    touch .env
+    ```
+4. Add your environment variables in the `.env` file. It should include the following:
 
-```
-SECRET_KEY=your_secret_key
-SQLALCHEMY_DATABASE_URI=your_database_uri
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-AFRICASTALKING_USERNAME=your_africastalking_username
-AFRICASTALKING_API_KEY=your_africastalking_api_key
-```
+    ```
+    SECRET_KEY=your_secret_key
+    SQLALCHEMY_DATABASE_URI=your_database_uri
+    GOOGLE_CLIENT_ID=your_google_client_id
+    GOOGLE_CLIENT_SECRET=your_google_client_secret
+    AFRICASTALKING_USERNAME=your_africastalking_username
+    AFRICASTALKING_API_KEY=your_africastalking_api_key
+    ```
 
-Build and run the Docker container:
-```sh
-docker-compose up --build
-```
+5. Build and run the Docker container:
+    ```sh
+    docker-compose up --build
+    ```
 
 ### Running the Application
 
