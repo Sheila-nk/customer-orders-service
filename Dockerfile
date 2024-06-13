@@ -16,6 +16,6 @@ RUN chown -R $USERNAME:$USERNAME /customer-orders-service
 
 USER $USERNAME
 
-RUN ["chmod", "+x", "/commands.sh"]
+RUN ["chmod", "+x", "./commands.sh"]
 
-CMD ["/commands.sh"]
+CMD ["./commands.sh"]
