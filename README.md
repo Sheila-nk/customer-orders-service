@@ -1,3 +1,6 @@
+[![Tests](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/test.yaml/badge.svg)](https://github.com/Sheila-nk/customer-orders-service/actions/workflows/test.yaml)
+
+
 # Customer-Orders Service
 
 The `Customer-Orders Service` is a Flask-based web application that handles user authentication and order management. 
@@ -14,7 +17,7 @@ The application is containerized using `Docker` and deployed on `Heroku`. It int
 
 
 ### Architecture
-![Service Architecure]('https://github.com/Sheila-nk/customer-orders-service/blob/main/images/architecture.png')
+![Service Architecure]('/images/architecture.png')
 
 ### Setup
 To run the application locally using Docker, ensure you have the following installed:
